@@ -7,7 +7,6 @@ import Big from 'big.js';
 /* eslint-enable no-unused-vars */
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
