@@ -1,55 +1,43 @@
 import Big from 'big.js';
 import operate from './operate';
 
-const calculate = ({ total, next, operation }, name) => {
-  /* eslint-disable no-param-reassign */
-  if (operation === '=') {
-    total = null;
-    next = null;
-    operation = null;
+const calculate = (calculatorData, buttonName) => {
+  const data = calculatorData;
+  if (data.operation === '=') {
+    data.total = null;
+    data.next = null;
+    data.operation = null;
   }
-  /* eslint-enable no-param-reassign */
   let result;
-  switch (name) {
+  switch (buttonName) {
     case 'AC':
-      return {
-        total: null,
-        next: null,
-        operation: null,
-      };
+      data.total = null;
+      data.next = null;
+      data.operation = null;
+      return data;
     case '+/-':
-      if (operation && next) {
-        result = Big(next).times(-1).toString();
-        return {
-          total,
-          next: result,
-          operation,
-        };
+      if (data.operation && data.next) {
+        result = Big(data.next).times(-1).toString();
+        data.next = result;
+        return data;
       }
-      result = Big(total).times(-1).toString();
-      return {
-        total: result,
-        next,
-        operation,
-      };
+      result = Big(data.total).times(-1).toString();
+      data.total = result;
+      return data;
     case '+':
     case '-':
     case '×':
     case '÷':
     case '%':
-      if (next) {
-        result = operate(total, next, operation);
-        return {
-          total: result,
-          next: null,
-          operation: name,
-        };
+      if (data.next) {
+        result = operate(data.total, data.next, data.operation);
+        data.total = result;
+        data.next = null;
+        data.operation = buttonName;
+        return data;
       }
-      return {
-        total,
-        next,
-        operation: name,
-      };
+      data.operation = buttonName;
+      return data;
     case '0':
     case '1':
     case '2':
@@ -60,52 +48,32 @@ const calculate = ({ total, next, operation }, name) => {
     case '7':
     case '8':
     case '9':
-      if (operation) {
-        return {
-          total,
-          next: `${next || ''}${name}`,
-          operation,
-        };
+      if (data.operation) {
+        data.next = `${data.next || ''}${buttonName}`;
+        return data;
       }
-      return {
-        total: `${total || ''}${name}`,
-        next,
-        operation,
-      };
+      data.total = `${data.total || ''}${buttonName}`;
+      return data;
     case '.':
-      if (operation && !next.include('.')) {
-        return {
-          total,
-          next: `${next || '0'}${name}`,
-          operation,
-        };
+      if (data.operation && !data.next.include('.')) {
+        data.next = `${data.next || '0'}${buttonName}`;
+        return data;
       }
-      if (!total.include('.')) {
-        return {
-          total: `${total || '0'}${name}`,
-          next,
-          operation,
-        };
+      if (!data.total.include('.')) {
+        data.total = `${data.total || '0'}${buttonName}`;
+        return data;
       }
-      return {
-        total,
-        next,
-        operation,
-      };
+      return data;
     case '=':
-      if (operation && next) {
-        result = operate(total, next, operation);
-        return {
-          total: result,
-          next: null,
-          operation: name,
-        };
+      if (data.operation && data.next) {
+        result = operate(data.total, data.next, data.operation);
+        data.total = result;
+        data.next = null;
+        data.operation = buttonName;
+        return data;
       }
-      return {
-        total,
-        next,
-        operation: name,
-      };
+      data.operation = buttonName;
+      return data;
     // no default
   }
   return {};
