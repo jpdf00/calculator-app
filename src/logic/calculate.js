@@ -1,8 +1,12 @@
 import Big from 'big.js';
 import operate from './operate';
 
-const calculate = (calculatorData, buttonName) => {
-  const data = calculatorData;
+const calculate = ({ total, next, operation }, buttonName) => {
+  const data = {
+    total,
+    next,
+    operation,
+  };
   if (data.operation === '=') {
     data.total = null;
     data.next = null;
@@ -17,12 +21,15 @@ const calculate = (calculatorData, buttonName) => {
       return data;
     case '+/-':
       if (data.operation && data.next) {
-        result = Big(data.next || 0).times(-1).toString();
+        result = Big(data.next).times(-1).toString();
         data.next = result;
         return data;
       }
-      result = Big(data.total || 0).times(-1).toString();
-      data.total = result;
+      if (data.total) {
+        result = Big(data.total).times(-1).toString();
+        data.total = result;
+        return data;
+      }
       return data;
     case '+':
     case '-':
@@ -55,12 +62,20 @@ const calculate = (calculatorData, buttonName) => {
       data.total = `${data.total || ''}${buttonName}`;
       return data;
     case '.':
-      if (data.operation && !data.next.include('.')) {
-        data.next = `${data.next || '0'}${buttonName}`;
+      if (!data.total) {
+        data.total = `0${buttonName}`;
         return data;
       }
-      if (!data.total.include('.')) {
-        data.total = `${data.total || '0'}${buttonName}`;
+      if (data.operation && !data.next) {
+        data.next = `0${buttonName}`;
+        return data;
+      }
+      if (!data.total.includes('.')) {
+        data.total = `${data.total}${buttonName}`;
+        return data;
+      }
+      if (data.operation && !data.next.includes('.')) {
+        data.next = `${data.next}${buttonName}`;
         return data;
       }
       return data;

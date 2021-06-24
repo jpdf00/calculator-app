@@ -1,37 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Display from './Display';
 import ButtonPanel from './ButtonPanel';
 import calculate from '../logic/calculate';
+import './style.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      total: null,
-      next: null,
-      operation: null,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
+const App = () => {
+  const [data, setData] = useState({
+    total: null,
+    next: null,
+    operation: null,
+  });
 
-  handleClick(buttonName) {
-    const data = calculate(this.state, buttonName);
-    this.setState(data);
-  }
+  const handleClick = (buttonName) => {
+    const result = calculate(data, buttonName);
+    setData(result);
+  };
 
-  render() {
-    /* eslint-disable no-unused-vars */
-    const { total, next, operation } = this.state;
-    /* eslint-enable no-unused-vars */
-    const result = !next ? total : next;
+  /* eslint-disable no-unused-vars */
+  const { total, next, operation } = data;
+  /* eslint-enable no-unused-vars */
+  const display = !next ? total : next;
 
-    return (
-      <>
-        <Display result={result || '0'} />
-        <ButtonPanel clickHandler={this.handleClick} />
-      </>
-    );
-  }
-}
+  return (
+    <main className="Size App">
+      <Display result={display || '0'} />
+      <ButtonPanel clickHandler={handleClick} />
+    </main>
+  );
+};
 
 export default App;
