@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
+import './style.css';
 
 const Display = (props) => {
   const { result } = props;
   return (
-    <div>
-      <h1>{result}</h1>
-    </div>
+    <h1 className="Size Display">{result}</h1>
   );
 };
 
