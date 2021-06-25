@@ -22,10 +22,13 @@ const App = () => {
   const display = !next ? total : next;
 
   return (
-    <main className="Size App">
-      <Display result={display || '0'} />
-      <ButtonPanel clickHandler={handleClick} />
-    </main>
+    <div className="Calculator">
+      <h2>Let&apos;s do some Math!</h2>
+      <div className="Size App">
+        <Display result={display || '0'} />
+        <ButtonPanel clickHandler={handleClick} />
+      </div>
+    </div>
   );
 };
 
