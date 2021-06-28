@@ -4,7 +4,7 @@ import './style.css';
 const Display = (props) => {
   const { result } = props;
   return (
-    <h1 className="Size Display">{result}</h1>
+    <h2 className="Size Display">{result}</h2>
   );
 };
 
