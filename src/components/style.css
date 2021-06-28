@@ -38,7 +38,7 @@
   width: 100vw;
   justify-content: space-between;
   margin: 0;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 .LinkGroup {
@@ -69,5 +69,5 @@
   justify-content: space-around;
   align-items: center;
   height: 600px;
-  font-size: 36px
+  font-size: 36px;
 }
