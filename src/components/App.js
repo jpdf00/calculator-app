@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Display from './Display';
 import ButtonPanel from './ButtonPanel';
 import calculate from '../logic/calculate';
-import './style.css';
+import '../assets/stylesheets/style.css';
 
 const App = () => {
   const [data, setData] = useState({

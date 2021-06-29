@@ -1,4 +1,4 @@
-import operate from './operate';
+import operate from '../logic/operate';
 
 describe('Operate Function', () => {
   let a = '8';
