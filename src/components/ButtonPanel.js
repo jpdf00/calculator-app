@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Button from './Button';
-import './style.css';
+import '../assets/stylesheets/style.css';
 
 const ButtonPanel = (props) => {
   const { clickHandler } = props;

@@ -1,0 +1,73 @@
+.Size {
+  display: flex;
+  width: 700px;
+  box-sizing: border-box;
+}
+
+.Calculator {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.App {
+  flex-direction: column;
+  margin: 10px;
+}
+
+.Display {
+  justify-content: flex-end;
+  align-items: center;
+  height: 100px;
+  background-color: #858694;
+  margin: 0;
+  padding: 10px;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #d8d8d8;
+  font-size: 60px;
+}
+
+.ButtonPanel {
+  height: 100px;
+}
+
+.Navbar {
+  display: flex;
+  padding: 10px;
+  width: 100vw;
+  justify-content: space-between;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.LinkGroup {
+  display: flex;
+  align-items: center;
+}
+
+.Link {
+  padding: 0 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.border {
+  border-right: 1px solid #000;
+}
+
+.Home {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;
+}
+
+.Quote {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 600px;
+  font-size: 36px;
+}

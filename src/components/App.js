@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Display from './Display';
 import ButtonPanel from './ButtonPanel';
 import calculate from '../logic/calculate';
-import './style.css';
+import '../assets/stylesheets/style.css';
 
 const App = () => {
   const [data, setData] = useState({
@@ -22,10 +22,13 @@ const App = () => {
   const display = !next ? total : next;
 
   return (
-    <main className="Size App">
-      <Display result={display || '0'} />
-      <ButtonPanel clickHandler={handleClick} />
-    </main>
+    <div className="Calculator">
+      <h2>Let&apos;s do some Math!</h2>
+      <div className="Size App">
+        <Display result={display || '0'} />
+        <ButtonPanel clickHandler={handleClick} />
+      </div>
+    </div>
   );
 };
 
